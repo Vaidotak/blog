@@ -1,5 +1,5 @@
 #Labas
-```
+```java
 public class Figura {
 
     private String pavadinimas;
