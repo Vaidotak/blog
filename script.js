@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const links = [
         { name: "Orai", url: "./orai/" },
-        { name: "Katalogas2", url: "./katalogas2/" },
+        { name: "Orai folder", url: "https://github.com/Vaidotak/blog/tree/30987f71ddcf4acc9f72c408dce5b9827d455afe/orai" },
         { name: "Katalogas3", url: "./katalogas3/" }
     ];
 
