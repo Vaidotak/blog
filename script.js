@@ -1,16 +1,18 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const directoryList = [
-        // Pavyzdžiui, katalogų pavadinimai
-        "Katalogas1",
-        "Katalogas2",
-        "Katalogas3"
+    const links = [
+        { name: "Katalogas1", url: "./orai" },
+        { name: "Katalogas2", url: "./katalogas2/" },
+        { name: "Katalogas3", url: "./katalogas3/" }
     ];
 
-    const ul = document.getElementById("directoryList");
+    const ul = document.getElementById("linkList");
 
-    directoryList.forEach(function(directory) {
+    links.forEach(function(link) {
         const li = document.createElement("li");
-        li.textContent = directory;
+        const a = document.createElement("a");
+        a.textContent = link.name;
+        a.href = link.url;
+        li.appendChild(a);
         ul.insertBefore(li, ul.firstChild);
     });
 });
