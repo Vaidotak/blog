@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const links = [
-        { name: "Katalogas1", url: "./orai" },
+        { name: "Katalogas1", url: "./katalogas1/" },
         { name: "Katalogas2", url: "./katalogas2/" },
         { name: "Katalogas3", url: "./katalogas3/" }
     ];
