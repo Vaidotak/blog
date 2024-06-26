@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const postsContainer = document.getElementById("posts");
 
             // Sort posts by date (newest first)
-            posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+            posts.sort((a, b) => new Date(a.date) - new Date(b.date));
 
             posts.forEach(post => {
                 const article = document.createElement("article");
