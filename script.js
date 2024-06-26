@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const apiUrl = 'https://public-api.wordpress.com/rest/v1.1/sites/funkcijos.wordpress.com/posts';
+    const apiUrl = 'https://public-api.wordpress.com/rest/v1.1/sites/funkcijos.wordpress.com/posts/?number=100';
 
     fetch(apiUrl)
         .then(response => response.json())
@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const posts = data.posts;
             const postsContainer = document.getElementById("posts");
+
+            // Sort posts by date (newest first)
+            posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
             posts.forEach(post => {
                 const article = document.createElement("article");
