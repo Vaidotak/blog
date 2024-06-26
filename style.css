@@ -3,31 +3,65 @@ body {
     background-color: #f0f0f0;
     margin: 0;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-h1 {
+header {
+    width: 100%;
     text-align: center;
-    color: #333;
+    margin-bottom: 20px;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+main {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
 }
 
-li {
+section#posts {
+    flex: 3;
+    margin-right: 20px;
+}
+
+aside {
+    flex: 1;
     background-color: #fff;
-    margin: 10px 0;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-a {
-    text-decoration: none;
-    color: #007BFF;
+article {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-a:hover {
-    text-decoration: underline;
+article h2 {
+    margin-top: 0;
+}
+
+article .date {
+    color: #777;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+article .content {
+    max-height: 5em;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+article.expanded .content {
+    max-height: none;
+}
+
+.read-more {
+    color: #007BFF;
+    cursor: pointer;
 }
