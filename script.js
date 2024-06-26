@@ -29,6 +29,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 content.innerHTML = post.content;
                 article.appendChild(content);
 
+                // Highlight code syntax
+                content.querySelectorAll('pre code').forEach(block => {
+                    hljs.highlightBlock(block);
+                });
+
                 const readMore = document.createElement("span");
                 readMore.textContent = "Skaityti plačiau";
                 readMore.className = "read-more";
@@ -43,4 +48,3 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(error => console.error('Klaida gaunant įrašus:', error));
 });
-
