@@ -4,6 +4,11 @@ document.addEventListener("DOMContentLoaded", function() {
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
+            if (!data.posts) {
+                console.error('Nerasta įrašų.');
+                return;
+            }
+
             const posts = data.posts;
             const postsContainer = document.getElementById("posts");
 
@@ -38,3 +43,4 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(error => console.error('Klaida gaunant įrašus:', error));
 });
+
