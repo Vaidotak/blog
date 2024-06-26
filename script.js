@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const apiUrl = 'https://public-api.wordpress.com/rest/v1.1/sites/funkcijos.wordpress.com/posts/?number=100';
+    const readmeUrl = 'https://raw.githubusercontent.com/Vaidotak/blog/main/orai/README.md';
     const scriptUrl = 'https://raw.githubusercontent.com/Vaidotak/blog/main/orai/orai.sh';
 
     fetch(apiUrl)
@@ -50,34 +51,50 @@ document.addEventListener("DOMContentLoaded", function() {
                 postsContainer.insertBefore(article, postsContainer.firstChild);
             });
 
-            // Add custom script content
-            fetch(scriptUrl)
+            // Add README.md content
+            fetch(readmeUrl)
                 .then(response => response.text())
-                .then(scriptContent => {
-                    const scriptArticle = document.createElement("article");
+                .then(readmeContent => {
+                    const readmeArticle = document.createElement("article");
 
-                    const scriptTitle = document.createElement("h2");
-                    scriptTitle.textContent = "Orai Scriptas";
-                    scriptArticle.appendChild(scriptTitle);
+                    const readmeTitle = document.createElement("h2");
+                    readmeTitle.textContent = "README.md Turinio Apžvalga";
+                    readmeArticle.appendChild(readmeTitle);
 
-                    const scriptDate = document.createElement("p");
-                    scriptDate.textContent = new Date().toLocaleDateString("lt-LT");
-                    scriptDate.className = "date";
-                    scriptArticle.appendChild(scriptDate);
+                    const readmeDate = document.createElement("p");
+                    readmeDate.textContent = new Date().toLocaleDateString("lt-LT");
+                    readmeDate.className = "date";
+                    readmeArticle.appendChild(readmeDate);
 
-                    const scriptContentDiv = document.createElement("div");
-                    scriptContentDiv.className = "content";
-                    scriptContentDiv.innerHTML = `<pre><code class="bash">${scriptContent}</code></pre>`;
-                    scriptArticle.appendChild(scriptContentDiv);
+                    const readmeContentDiv = document.createElement("div");
+                    readmeContentDiv.className = "content";
+                    readmeContentDiv.innerHTML = `<pre><code class="markdown">${marked(readmeContent)}</code></pre>`;
+                    readmeArticle.appendChild(readmeContentDiv);
 
                     // Highlight code syntax
-                    scriptContentDiv.querySelectorAll('pre code').forEach(block => {
+                    readmeContentDiv.querySelectorAll('pre code').forEach(block => {
                         hljs.highlightBlock(block);
                     });
 
-                    postsContainer.insertBefore(scriptArticle, postsContainer.firstChild);
+                    postsContainer.insertBefore(readmeArticle, postsContainer.firstChild);
+
+                    // Add orai.sh content under README.md
+                    fetch(scriptUrl)
+                        .then(response => response.text())
+                        .then(scriptContent => {
+                            const scriptContentDiv = document.createElement("div");
+                            scriptContentDiv.className = "content";
+                            scriptContentDiv.innerHTML = `<pre><code class="bash">${scriptContent}</code></pre>`;
+                            readmeArticle.appendChild(scriptContentDiv);
+
+                            // Highlight code syntax
+                            scriptContentDiv.querySelectorAll('pre code').forEach(block => {
+                                hljs.highlightBlock(block);
+                            });
+                        })
+                        .catch(error => console.error('Klaida gaunant skriptą:', error));
                 })
-                .catch(error => console.error('Klaida gaunant skriptą:', error));
+                .catch(error => console.error('Klaida gaunant README.md:', error));
         })
         .catch(error => console.error('Klaida gaunant įrašus:', error));
 });
