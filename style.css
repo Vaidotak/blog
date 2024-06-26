@@ -60,7 +60,7 @@ pre code {
     border: 1px solid #ddd;
     border-radius: 5px;
     overflow-x: auto;
-    font-size: 0.9em;
+    font-size: 0.7em;
 }
 
 @media (max-width: 768px) {
