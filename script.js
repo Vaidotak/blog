@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const apiUrl = 'https://public-api.wordpress.com/rest/v1.1/sites/funkcijos.wordpress.com/posts/?number=100';
+    const scriptUrl = 'https://raw.githubusercontent.com/Vaidotak/blog/main/orai/orai.sh';
 
     fetch(apiUrl)
         .then(response => response.json())
@@ -13,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const postsContainer = document.getElementById("posts");
 
             // Sort posts by date (newest first)
-            posts.sort((a, b) => new Date(a.date) - new Date(b.date));
+            posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
             posts.forEach(post => {
                 const article = document.createElement("article");
@@ -48,6 +49,35 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 postsContainer.insertBefore(article, postsContainer.firstChild);
             });
+
+            // Add custom script content
+            fetch(scriptUrl)
+                .then(response => response.text())
+                .then(scriptContent => {
+                    const scriptArticle = document.createElement("article");
+
+                    const scriptTitle = document.createElement("h2");
+                    scriptTitle.textContent = "Orai Scriptas";
+                    scriptArticle.appendChild(scriptTitle);
+
+                    const scriptDate = document.createElement("p");
+                    scriptDate.textContent = new Date().toLocaleDateString("lt-LT");
+                    scriptDate.className = "date";
+                    scriptArticle.appendChild(scriptDate);
+
+                    const scriptContentDiv = document.createElement("div");
+                    scriptContentDiv.className = "content";
+                    scriptContentDiv.innerHTML = `<pre><code class="bash">${scriptContent}</code></pre>`;
+                    scriptArticle.appendChild(scriptContentDiv);
+
+                    // Highlight code syntax
+                    scriptContentDiv.querySelectorAll('pre code').forEach(block => {
+                        hljs.highlightBlock(block);
+                    });
+
+                    postsContainer.insertBefore(scriptArticle, postsContainer.firstChild);
+                })
+                .catch(error => console.error('Klaida gaunant skriptą:', error));
         })
         .catch(error => console.error('Klaida gaunant įrašus:', error));
 });
