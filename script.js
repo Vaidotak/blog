@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const apiUrl = 'https://public-api.wordpress.com/rest/v1.1/sites/funkcijos.wordpress.com/posts/?number=100';
-    const readmeUrl = 'https://raw.githubusercontent.com/Vaidotak/blog/main/orai/README.md';
+    const readmeUrl = 'https://raw.githubusercontent.com/Vaidotak/blog/main/orai/readme.md';
     const scriptUrl = 'https://raw.githubusercontent.com/Vaidotak/blog/main/orai/orai.sh';
 
     fetch(apiUrl)
