@@ -1,85 +1,73 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-color: #f9f9f9;
 }
 
 header {
-    width: 100%;
-    text-align: center;
     background-color: #333;
-    color: #fff;
-    padding: 20px 0;
-    margin-bottom: 20px;
+    color: white;
+    padding: 20px;
+    text-align: center;
 }
 
-main {
-    display: flex;
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    flex-wrap: wrap;
-}
-
-section#posts {
-    flex: 3;
-    margin-right: 20px;
-}
-
-aside {
-    flex: 1;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
+#posts {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
 }
 
 article {
-    background-color: #fff;
+    background-color: white;
     margin-bottom: 20px;
-    padding: 15px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: max-height 0.5s ease;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
-    font-size: 0.9em;
+    max-height: 200px; /* default height for preview */
 }
 
-article h2 {
-    margin-top: 0;
-    font-size: 1.2em;
-}
-
-article .date {
-    color: #777;
-    font-size: 0.8em;
-    margin-bottom: 10px;
-}
-
-article .content {
-    max-height: 5em;
-    overflow: hidden;
-}
-
-article.expanded .content {
+article.expanded {
     max-height: none;
 }
 
-.read-more {
-    color: #007BFF;
-    cursor: pointer;
-    display: inline-block;
-    margin-top: 10px;
+h2 {
+    margin: 0 0 10px;
 }
 
-code {
+.date {
+    color: #777;
+    font-size: 0.9em;
+}
+
+.content {
+    line-height: 1.6em;
+    margin: 20px 0;
+}
+
+.read-more {
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+pre code {
+    display: block;
+    padding: 10px;
     background-color: #f5f5f5;
-    padding: 2px 4px;
-    border-radius: 4px;
-    font-family: monospace;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 0.9em;
+}
+
+@media (max-width: 768px) {
+    #posts {
+        padding: 0 10px;
+    }
+    article {
+        padding: 15px;
+    }
 }
